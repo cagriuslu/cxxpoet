@@ -6,8 +6,8 @@ import kotlin.test.assertEquals
 
 class ValueTest {
     @Test
-    fun variableValue() {
-        assertEquals("myVar", Reference("myVar").emitDefinition())
+    fun boolean() {
+        assertEquals("false", BooleanValue(false).emitDefinition())
     }
 
     @Test
@@ -26,12 +26,22 @@ class ValueTest {
     }
 
     @Test
+    fun long() {
+        assertEquals("12345L", LongValue(12345).emitDefinition())
+    }
+
+    @Test
     fun string() {
         assertEquals("\"Hello\"", StringValue("Hello").emitDefinition())
     }
 
     @Test
     fun unsigned() {
-        assertEquals("12345U", UnsignedValue(12345).emitDefinition())
+        assertEquals("12345U", UnsignedValue(12345U).emitDefinition())
+    }
+
+    @Test
+    fun unsignedLong() {
+        assertEquals("12345LU", UnsignedLongValue(12345UL).emitDefinition())
     }
 }

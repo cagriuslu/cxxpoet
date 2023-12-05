@@ -1,9 +1,6 @@
 package com.adyen.ipp.cxxpoet.emittables
 
-import com.adyen.ipp.cxxpoet.emittables.expressions.BooleanValue
-import com.adyen.ipp.cxxpoet.emittables.expressions.IntegerValue
-import com.adyen.ipp.cxxpoet.emittables.expressions.Reference
-import com.adyen.ipp.cxxpoet.emittables.expressions.StringValue
+import com.adyen.ipp.cxxpoet.emittables.expressions.*
 import com.adyen.ipp.cxxpoet.emittables.statements.Assignment
 import com.adyen.ipp.cxxpoet.emittables.statements.IfBlock
 import com.adyen.ipp.cxxpoet.emittables.statements.Return
@@ -13,12 +10,12 @@ import kotlin.test.assertEquals
 
 class StatementTest {
     @Test
-    fun assignmentTest() {
+    fun assignment() {
         assertEquals("*this = other;", Assignment("*this", Reference("other")).emitDefinition())
     }
 
     @Test
-    fun ifBlockTest() {
+    fun ifBlock() {
         val ifBlockBuilder = IfBlock.Builder(BooleanValue(true))
         ifBlockBuilder.addStatement(VariableDeclaration("std::string", "name", StringValue("John Smith")))
         ifBlockBuilder.addStatement(Assignment("name", StringValue("Mary Elizabeth")))
@@ -45,7 +42,13 @@ class StatementTest {
     }
 
     @Test
-    fun returnTest() {
+    fun `return`() {
         assertEquals("return \"Hello\";", Return(StringValue("Hello")).emitDefinition())
+    }
+
+    @Test
+    fun variableDeclaration() {
+        assertEquals("int a;", VariableDeclaration("int", "a").emitDefinition())
+        assertEquals("int a = 5;", VariableDeclaration("int", "a", IntegerValue(5)).emitDefinition())
     }
 }
