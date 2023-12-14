@@ -5,6 +5,6 @@ import com.adyen.ipp.cxxpoet.emittables.expressions.Expression
 
 class Return(val expr: Expression) : Statement() {
     override fun emitDefinition(out: CodeStream) {
-        out.print("return ${expr.emitDefinition()};")
+        out.println("return ${expr.emitDefinition()};")
     }
 }

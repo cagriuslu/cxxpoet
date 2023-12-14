@@ -12,14 +12,16 @@ class IfBlock private constructor(
         out.increaseIndentation()
 
         builder.statements.forEach {
-            out.println(it.emitDefinition())
+            out.printIndentation()
+            out.print(it.emitDefinition())
         }
         builder.elseIfBlocks.forEach {
             out.decreaseIndentation()
             out.println("} else if (${it.first.emitDefinition()}) {")
             out.increaseIndentation()
-            it.second.forEach { st ->
-                out.println(st.emitDefinition())
+            it.second.forEach {
+                out.printIndentation()
+                out.print(it.emitDefinition())
             }
         }
         if (builder.elseStatements.isNotEmpty()) {
@@ -27,7 +29,8 @@ class IfBlock private constructor(
             out.println("} else {")
             out.increaseIndentation()
             builder.elseStatements.forEach {
-                out.println(it.emitDefinition())
+                out.printIndentation();
+                out.print(it.emitDefinition())
             }
         }
 

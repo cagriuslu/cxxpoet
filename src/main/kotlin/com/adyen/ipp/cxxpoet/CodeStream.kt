@@ -30,7 +30,7 @@ class CodeStream : ByteArrayOutputStream() {
         write('\n'.code)
     }
 
-    private fun printIndentation() {
+    fun printIndentation() {
         repeat(indentation) {
             repeat(4) {
                 write(' '.code)

@@ -2,9 +2,10 @@ package com.adyen.ipp.cxxpoet.emittables.statements
 
 import com.adyen.ipp.cxxpoet.CodeStream
 import com.adyen.ipp.cxxpoet.emittables.expressions.Expression
+import com.adyen.ipp.cxxpoet.emittables.expressions.ReferenceBase
 
-class Assignment(val lhs: String, val rhs: Expression) : Statement() {
+class Assignment(val lhs: ReferenceBase, val rhs: Expression) : Statement() {
     override fun emitDefinition(out: CodeStream) {
-        out.print("$lhs = ${rhs.emitDefinition()};")
+        out.println("${lhs.emitDefinition()} = ${rhs.emitDefinition()};")
     }
 }

@@ -63,6 +63,7 @@ class ExpressionTest {
     @Test
     fun functionCall() {
         assertEquals("myFunction(3, 5, \"Hello\")", FunctionCall("myFunction", listOf(IntegerValue(3), IntegerValue(5), StringValue("Hello"))).emitDefinition())
+        assertEquals("myFunction()", FunctionCall("myFunction").emitDefinition())
     }
 
     @Test
